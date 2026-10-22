@@ -1,0 +1,25 @@
+DATA CHECKS
+Rows: 90,189
+Missing values per column: {'userid': 0, 'version': 0, 'sum_gamerounds': 0, 'retention_1': 0, 'retention_7': 0}
+Duplicated userid: 0
+Users per arm: {'gate_40': 45489, 'gate_30': 44700}
+Sample ratio check against a 50/50 split: chi2 = 6.902, p = 0.0086
+Share of users with 0 game rounds: {'gate_30': 0.0433, 'gate_40': 0.0452}
+Three largest game round counts: [49854, 2961, 2640]
+
+RETENTION TESTS (two proportion z-test, treatment minus control)
+retention_1: control 44.82%, treatment 44.23%, difference -0.59 pp (95% CI -1.24 to 0.06; bootstrap CI -1.23 to 0.05), relative change -1.3%, z = -1.78, p = 0.0744, Holm adjusted p = 0.0744
+retention_7: control 19.02%, treatment 18.20%, difference -0.82 pp (95% CI -1.33 to -0.31; bootstrap CI -1.32 to -0.31), relative change -4.3%, z = -3.16, p = 0.0016, Holm adjusted p = 0.0031
+
+GAME ROUNDS (descriptive and robustness checks, not a primary metric)
+Mean rounds: control 52.46, treatment 51.30
+Median rounds: control 17.0, treatment 16.0
+Mann-Whitney U test p = 0.0502
+Welch t-test on raw rounds p = 0.3759 (sensitive to the extreme value)
+After removing the single largest value: mean rounds control 51.34, treatment 51.30, Welch p = 0.9495
+
+POWER ANALYSIS
+retention_1: baseline 0.4482. With 44,700 and 45,489 users per arm, a lift of about 0.93 percentage points is the smallest detectable with 80% power at alpha 0.05.
+retention_7: baseline 0.1902. With 44,700 and 45,489 users per arm, a lift of about 0.74 percentage points is the smallest detectable with 80% power at alpha 0.05.
+To detect a 1 percentage point change in 7 day retention from the baseline 0.1902 with 80% power, about 23,685 users per arm are needed.
+
